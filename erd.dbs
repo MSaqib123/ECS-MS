@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="SqlServer" id="Project_1488" database="SqlServer" >
+	<schema name="dbo" catalogname="ECS_economic_census_management_system" >
+		<table name="AdditionalIncome" row_count="0" >
+			<column name="IncomeID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="HouseholdID" type="int" length="10" decimal="0" jt="4" />
+			<column name="Source" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="Amount" type="decimal" length="12" decimal="2" jt="3" />
+			<index name="PK__Addition__60DFC66CBD1E0081" unique="PRIMARY_KEY" >
+				<column name="IncomeID" />
+			</index>
+			<fk name="FK__Additiona__House__619B8048" to_schema="ECS_economic_census_management_system.dbo" to_table="Households" >
+				<fk_column name="HouseholdID" pk="HouseholdID" />
+			</fk>
+		</table>
+		<table name="BankAccounts" row_count="0" >
+			<column name="AccountID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="HouseholdID" type="int" length="10" decimal="0" jt="4" />
+			<column name="BankName" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="AccountNumber" type="varchar" length="50" decimal="0" jt="12" />
+			<index name="PK__BankAcco__349DA5861EC44B53" unique="PRIMARY_KEY" >
+				<column name="AccountID" />
+			</index>
+			<fk name="FK__BankAccou__House__47DBAE45" to_schema="ECS_economic_census_management_system.dbo" to_table="Households" >
+				<fk_column name="HouseholdID" pk="HouseholdID" />
+			</fk>
+		</table>
+		<table name="Children" row_count="0" >
+			<column name="ChildID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="MemberID" type="int" length="10" decimal="0" jt="4" />
+			<column name="ChildName" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="DateOfBirth" type="date" length="10" decimal="0" jt="91" />
+			<index name="PK__Children__BEFA07367E544C59" unique="PRIMARY_KEY" >
+				<column name="ChildID" />
+			</index>
+			<fk name="FK__Children__Member__1920BF5C" to_schema="ECS_economic_census_management_system.dbo" to_table="HouseholdMembers" >
+				<fk_column name="MemberID" pk="MemberID" />
+			</fk>
+		</table>
+		<table name="ChildrenEducation" row_count="0" >
+			<column name="ChildEducationID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="ChildID" type="int" length="10" decimal="0" jt="4" />
+			<column name="SchoolName" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="GradeLevel" type="varchar" length="20" decimal="0" jt="12" />
+			<index name="PK__Children__B1E35D69755085F4" unique="PRIMARY_KEY" >
+				<column name="ChildEducationID" />
+			</index>
+			<fk name="FK__ChildrenE__Child__5629CD9C" to_schema="ECS_economic_census_management_system.dbo" to_table="Children" >
+				<fk_column name="ChildID" pk="ChildID" />
+			</fk>
+		</table>
+		<table name="Citizenship" row_count="0" >
+			<column name="CitizenshipID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="MemberID" type="int" length="10" decimal="0" jt="4" />
+			<column name="Country" type="varchar" length="100" decimal="0" jt="12" />
+			<index name="PK__Citizens__F23EFD9B507BDFA5" unique="PRIMARY_KEY" >
+				<column name="CitizenshipID" />
+			</index>
+			<fk name="FK__Citizensh__Membe__30F848ED" to_schema="ECS_economic_census_management_system.dbo" to_table="HouseholdMembers" >
+				<fk_column name="MemberID" pk="MemberID" />
+			</fk>
+		</table>
+		<table name="Contacts" row_count="0" >
+			<column name="ContactID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="HouseholdID" type="int" length="10" decimal="0" jt="4" />
+			<column name="ContactType" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="ContactValue" type="varchar" length="100" decimal="0" jt="12" />
+			<index name="PK__Contacts__5C6625BBDB914C4F" unique="PRIMARY_KEY" >
+				<column name="ContactID" />
+			</index>
+			<fk name="FK__Contacts__Househ__2A4B4B5E" to_schema="ECS_economic_census_management_system.dbo" to_table="Households" >
+				<fk_column name="HouseholdID" pk="HouseholdID" />
+			</fk>
+		</table>
+		<table name="DeathCertificate" row_count="0" >
+			<column name="CertificateID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="DeathID" type="int" length="10" decimal="0" jt="4" />
+			<column name="CertificateNumber" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="IssuedBy" type="varchar" length="100" decimal="0" jt="12" />
+			<index name="PK__DeathCer__BBF8A7E183BCBDE8" unique="PRIMARY_KEY" >
+				<column name="CertificateID" />
+			</index>
+			<fk name="FK__DeathCert__Death__534D60F1" to_schema="ECS_economic_census_management_system.dbo" to_table="DeathRecords" >
+				<fk_column name="DeathID" pk="DeathID" />
+			</fk>
+		</table>
+		<table name="DeathRecords" row_count="0" >
+			<column name="DeathID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="MemberID" type="int" length="10" decimal="0" jt="4" />
+			<column name="DeathDate" type="date" length="10" decimal="0" jt="91" />
+			<column name="CauseOfDeath" type="varchar" length="200" decimal="0" jt="12" />
+			<index name="PK__DeathRec__D1493AB9963655CC" unique="PRIMARY_KEY" >
+				<column name="DeathID" />
+			</index>
+			<fk name="FK__DeathReco__Membe__1ED998B2" to_schema="ECS_economic_census_management_system.dbo" to_table="HouseholdMembers" >
+				<fk_column name="MemberID" pk="MemberID" />
+			</fk>
+		</table>
+		<table name="Disabilities" row_count="0" >
+			<column name="DisabilityID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="MemberID" type="int" length="10" decimal="0" jt="4" />
+			<column name="DisabilityType" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="Description" type="varchar" length="200" decimal="0" jt="12" />
+			<index name="PK__Disabili__ACB2BC7474F7787E" unique="PRIMARY_KEY" >
+				<column name="DisabilityID" />
+			</index>
+			<fk name="FK__Disabilit__Membe__398D8EEE" to_schema="ECS_economic_census_management_system.dbo" to_table="HouseholdMembers" >
+				<fk_column name="MemberID" pk="MemberID" />
+			</fk>
+		</table>
+		<table name="Education" row_count="0" >
+			<column name="EducationID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="MemberID" type="int" length="10" decimal="0" jt="4" />
+			<column name="SchoolName" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="GradeLevel" type="varchar" length="20" decimal="0" jt="12" />
+			<index name="PK__Educatio__4BBE38E5045363B9" unique="PRIMARY_KEY" >
+				<column name="EducationID" />
+			</index>
+			<fk name="FK__Education__Membe__21B6055D" to_schema="ECS_economic_census_management_system.dbo" to_table="HouseholdMembers" >
+				<fk_column name="MemberID" pk="MemberID" />
+			</fk>
+		</table>
+		<table name="ElderlyHealthConditions" row_count="0" >
+			<column name="ElderlyConditionID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="ElderlyID" type="int" length="10" decimal="0" jt="4" />
+			<column name="ConditionName" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="Description" type="varchar" length="200" decimal="0" jt="12" />
+			<index name="PK__ElderlyH__5F0544EF853F978E" unique="PRIMARY_KEY" >
+				<column name="ElderlyConditionID" />
+			</index>
+			<fk name="FK__ElderlyHe__Elder__59063A47" to_schema="ECS_economic_census_management_system.dbo" to_table="ElderlyMembers" >
+				<fk_column name="ElderlyID" pk="ElderlyID" />
+			</fk>
+		</table>
+		<table name="ElderlyMembers" row_count="0" >
+			<column name="ElderlyID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="MemberID" type="int" length="10" decimal="0" jt="4" />
+			<column name="ElderlyName" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="DateOfBirth" type="date" length="10" decimal="0" jt="91" />
+			<column name="DateOfDeath" type="date" length="10" decimal="0" jt="91" />
+			<index name="PK__ElderlyM__8E4AA9399884D519" unique="PRIMARY_KEY" >
+				<column name="ElderlyID" />
+			</index>
+			<fk name="FK__ElderlyMe__Membe__1BFD2C07" to_schema="ECS_economic_census_management_system.dbo" to_table="HouseholdMembers" >
+				<fk_column name="MemberID" pk="MemberID" />
+			</fk>
+		</table>
+		<table name="EmergencyContacts" row_count="0" >
+			<column name="ContactID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="MemberID" type="int" length="10" decimal="0" jt="4" />
+			<column name="ContactName" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="Relationship" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="ContactNumber" type="varchar" length="20" decimal="0" jt="12" />
+			<index name="PK__Emergenc__5C6625BB4BDC2662" unique="PRIMARY_KEY" >
+				<column name="ContactID" />
+			</index>
+			<fk name="FK__Emergency__Membe__3C69FB99" to_schema="ECS_economic_census_management_system.dbo" to_table="HouseholdMembers" >
+				<fk_column name="MemberID" pk="MemberID" />
+			</fk>
+		</table>
+		<table name="Employment" row_count="0" >
+			<column name="EmploymentID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="MemberID" type="int" length="10" decimal="0" jt="4" />
+			<column name="CompanyName" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="Position" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="Income" type="decimal" length="12" decimal="2" jt="3" />
+			<index name="PK__Employme__FDC872D6DB5B380D" unique="PRIMARY_KEY" >
+				<column name="EmploymentID" />
+			</index>
+			<fk name="FK__Employmen__Membe__24927208" to_schema="ECS_economic_census_management_system.dbo" to_table="HouseholdMembers" >
+				<fk_column name="MemberID" pk="MemberID" />
+			</fk>
+		</table>
+		<table name="FutureAddress" row_count="0" >
+			<column name="FutureAddressID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="MemberID" type="int" length="10" decimal="0" jt="4" />
+			<column name="Address" type="varchar" length="200" decimal="0" jt="12" />
+			<column name="City" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="State" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="PostalCode" type="varchar" length="20" decimal="0" jt="12" />
+			<column name="Country" type="varchar" length="100" decimal="0" jt="12" />
+			<index name="PK__FutureAd__4FE134F4022215F4" unique="PRIMARY_KEY" >
+				<column name="FutureAddressID" />
+			</index>
+			<fk name="FK__FutureAdd__Membe__5BE2A6F2" to_schema="ECS_economic_census_management_system.dbo" to_table="HouseholdMembers" >
+				<fk_column name="MemberID" pk="MemberID" />
+			</fk>
+		</table>
+		<table name="HealthConditions" row_count="0" >
+			<column name="ConditionID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="MemberID" type="int" length="10" decimal="0" jt="4" />
+			<column name="ConditionName" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="Description" type="varchar" length="200" decimal="0" jt="12" />
+			<index name="PK__HealthCo__37F5C0EF6BA0DD36" unique="PRIMARY_KEY" >
+				<column name="ConditionID" />
+			</index>
+			<fk name="FK__HealthCon__Membe__36B12243" to_schema="ECS_economic_census_management_system.dbo" to_table="HouseholdMembers" >
+				<fk_column name="MemberID" pk="MemberID" />
+			</fk>
+		</table>
+		<table name="HouseholdMembers" row_count="0" >
+			<column name="MemberID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="HouseholdID" type="int" length="10" decimal="0" jt="4" />
+			<column name="MemberName" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="Gender" type="varchar" length="10" decimal="0" jt="12" />
+			<column name="DateOfBirth" type="date" length="10" decimal="0" jt="91" />
+			<column name="Nationality" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="Occupation" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="NIC" type="varchar" length="20" decimal="0" jt="12" />
+			<column name="JoblessStatus" type="varchar" length="50" decimal="0" jt="12" />
+			<index name="PK__Househol__0CF04B386788E932" unique="PRIMARY_KEY" >
+				<column name="MemberID" />
+			</index>
+			<fk name="FK__Household__House__1273C1CD" to_schema="ECS_economic_census_management_system.dbo" to_table="Households" >
+				<fk_column name="HouseholdID" pk="HouseholdID" />
+			</fk>
+		</table>
+		<table name="Households" row_count="0" >
+			<column name="HouseholdID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="HouseholdName" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="Address" type="varchar" length="200" decimal="0" jt="12" />
+			<column name="City" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="State" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="PostalCode" type="varchar" length="20" decimal="0" jt="12" />
+			<column name="Country" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="PermanentAddress" type="varchar" length="200" decimal="0" jt="12" />
+			<column name="FutureAddress" type="varchar" length="200" decimal="0" jt="12" />
+			<index name="PK__Househol__1453D6ECDFB5460F" unique="PRIMARY_KEY" >
+				<column name="HouseholdID" />
+			</index>
+		</table>
+		<table name="Income" row_count="0" >
+			<column name="IncomeID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="HouseholdID" type="int" length="10" decimal="0" jt="4" />
+			<column name="Source" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="Amount" type="decimal" length="12" decimal="2" jt="3" />
+			<index name="PK__Income__60DFC66C480E607F" unique="PRIMARY_KEY" >
+				<column name="IncomeID" />
+			</index>
+			<fk name="FK__Income__Househol__276EDEB3" to_schema="ECS_economic_census_management_system.dbo" to_table="Households" >
+				<fk_column name="HouseholdID" pk="HouseholdID" />
+			</fk>
+		</table>
+		<table name="InsurancePolicies" row_count="0" >
+			<column name="PolicyID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="HouseholdID" type="int" length="10" decimal="0" jt="4" />
+			<column name="PolicyType" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="PolicyNumber" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="InsuranceCompany" type="varchar" length="100" decimal="0" jt="12" />
+			<index name="PK__Insuranc__2E133944FCCE46A5" unique="PRIMARY_KEY" >
+				<column name="PolicyID" />
+			</index>
+			<fk name="FK__Insurance__House__4AB81AF0" to_schema="ECS_economic_census_management_system.dbo" to_table="Households" >
+				<fk_column name="HouseholdID" pk="HouseholdID" />
+			</fk>
+		</table>
+		<table name="Interests" row_count="0" >
+			<column name="InterestID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="MemberID" type="int" length="10" decimal="0" jt="4" />
+			<column name="Interest" type="varchar" length="100" decimal="0" jt="12" />
+			<index name="PK__Interest__20832C0732F855A4" unique="PRIMARY_KEY" >
+				<column name="InterestID" />
+			</index>
+			<fk name="FK__Interests__Membe__4222D4EF" to_schema="ECS_economic_census_management_system.dbo" to_table="HouseholdMembers" >
+				<fk_column name="MemberID" pk="MemberID" />
+			</fk>
+		</table>
+		<table name="JoblessAssistance" row_count="0" >
+			<column name="AssistanceID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="MemberID" type="int" length="10" decimal="0" jt="4" />
+			<column name="AssistanceType" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="Description" type="varchar" length="200" decimal="0" jt="12" />
+			<index name="PK__JoblessA__901E90B9FB0BC997" unique="PRIMARY_KEY" >
+				<column name="AssistanceID" />
+			</index>
+			<fk name="FK__JoblessAs__Membe__5EBF139D" to_schema="ECS_economic_census_management_system.dbo" to_table="HouseholdMembers" >
+				<fk_column name="MemberID" pk="MemberID" />
+			</fk>
+		</table>
+		<table name="JoblessStatus" row_count="0" >
+			<column name="StatusID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="MemberID" type="int" length="10" decimal="0" jt="4" />
+			<column name="StatusDescription" type="varchar" length="200" decimal="0" jt="12" />
+			<index name="PK__JoblessS__C8EE2043298B7129" unique="PRIMARY_KEY" >
+				<column name="StatusID" />
+			</index>
+			<fk name="FK__JoblessSt__Membe__4D94879B" to_schema="ECS_economic_census_management_system.dbo" to_table="HouseholdMembers" >
+				<fk_column name="MemberID" pk="MemberID" />
+			</fk>
+		</table>
+		<table name="Languages" row_count="0" >
+			<column name="LanguageID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="MemberID" type="int" length="10" decimal="0" jt="4" />
+			<column name="Language" type="varchar" length="50" decimal="0" jt="12" />
+			<index name="PK__Language__B938558BAD81C74F" unique="PRIMARY_KEY" >
+				<column name="LanguageID" />
+			</index>
+			<fk name="FK__Languages__Membe__33D4B598" to_schema="ECS_economic_census_management_system.dbo" to_table="HouseholdMembers" >
+				<fk_column name="MemberID" pk="MemberID" />
+			</fk>
+		</table>
+		<table name="MaritalStatus" row_count="0" >
+			<column name="MaritalStatusID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="MemberID" type="int" length="10" decimal="0" jt="4" />
+			<column name="Status" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="SpouseID" type="int" length="10" decimal="0" jt="4" />
+			<index name="PK__MaritalS__C8B1BA523F12B77A" unique="PRIMARY_KEY" >
+				<column name="MaritalStatusID" />
+			</index>
+			<fk name="FK__MaritalSt__Membe__15502E78" to_schema="ECS_economic_census_management_system.dbo" to_table="HouseholdMembers" >
+				<fk_column name="MemberID" pk="MemberID" />
+			</fk>
+			<fk name="FK__MaritalSt__Spous__164452B1" to_schema="ECS_economic_census_management_system.dbo" to_table="HouseholdMembers" >
+				<fk_column name="SpouseID" pk="MemberID" />
+			</fk>
+		</table>
+		<table name="OtherDetails" row_count="0" >
+			<column name="DetailID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="HouseholdID" type="int" length="10" decimal="0" jt="4" />
+			<column name="DetailType" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="DetailValue" type="varchar" length="200" decimal="0" jt="12" />
+			<index name="PK__OtherDet__135C314D699CAF52" unique="PRIMARY_KEY" >
+				<column name="DetailID" />
+			</index>
+			<fk name="FK__OtherDeta__House__5070F446" to_schema="ECS_economic_census_management_system.dbo" to_table="Households" >
+				<fk_column name="HouseholdID" pk="HouseholdID" />
+			</fk>
+		</table>
+		<table name="Relationships" row_count="0" >
+			<column name="RelationshipID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="Member1ID" type="int" length="10" decimal="0" jt="4" />
+			<column name="Member2ID" type="int" length="10" decimal="0" jt="4" />
+			<column name="RelationshipType" type="varchar" length="50" decimal="0" jt="12" />
+			<index name="PK__Relation__31FEB8617592383E" unique="PRIMARY_KEY" >
+				<column name="RelationshipID" />
+			</index>
+			<fk name="FK__Relations__Membe__2D27B809" to_schema="ECS_economic_census_management_system.dbo" to_table="HouseholdMembers" >
+				<fk_column name="Member1ID" pk="MemberID" />
+			</fk>
+			<fk name="FK__Relations__Membe__2E1BDC42" to_schema="ECS_economic_census_management_system.dbo" to_table="HouseholdMembers" >
+				<fk_column name="Member2ID" pk="MemberID" />
+			</fk>
+		</table>
+		<table name="Vaccinations" row_count="0" >
+			<column name="VaccinationID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="MemberID" type="int" length="10" decimal="0" jt="4" />
+			<column name="VaccinationName" type="varchar" length="100" decimal="0" jt="12" />
+			<column name="DateAdministered" type="date" length="10" decimal="0" jt="91" />
+			<index name="PK__Vaccinat__466BCFA7E0DADA9E" unique="PRIMARY_KEY" >
+				<column name="VaccinationID" />
+			</index>
+			<fk name="FK__Vaccinati__Membe__44FF419A" to_schema="ECS_economic_census_management_system.dbo" to_table="HouseholdMembers" >
+				<fk_column name="MemberID" pk="MemberID" />
+			</fk>
+		</table>
+		<table name="Vehicles" row_count="0" >
+			<column name="VehicleID" type="int" length="10" decimal="0" jt="4" mandatory="y" />
+			<column name="HouseholdID" type="int" length="10" decimal="0" jt="4" />
+			<column name="VehicleType" type="varchar" length="50" decimal="0" jt="12" />
+			<column name="VehicleNumber" type="varchar" length="20" decimal="0" jt="12" />
+			<index name="PK__Vehicles__476B54B262FAFB2C" unique="PRIMARY_KEY" >
+				<column name="VehicleID" />
+			</index>
+			<fk name="FK__Vehicles__Househ__3F466844" to_schema="ECS_economic_census_management_system.dbo" to_table="Households" >
+				<fk_column name="HouseholdID" pk="HouseholdID" />
+			</fk>
+		</table>
+	</schema>
+	<connector name="SqlServer" database="SqlServer" driver_class="net.sourceforge.jtds.jdbc.Driver" driver_jar="jtds-1.3.1.jar" driver_desc="SQL Server Authentication - JTDS Driver" host="localhost" port="1433" instance="ECS_economic_census_management_system" />
+	<layout name="Default Layout" id="Layout_1dfc" show_relation="columns" >
+		<entity schema="ECS_economic_census_management_system.dbo" name="AdditionalIncome" color="BED3F4" x="1712" y="512" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="BankAccounts" color="BED3F4" x="1712" y="800" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="Children" color="BED3F4" x="1232" y="1104" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="ChildrenEducation" color="BED3F4" x="1424" y="1104" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="Citizenship" color="C7F4BE" x="752" y="848" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="Contacts" color="BED3F4" x="1472" y="800" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="DeathCertificate" color="F4DDBE" x="736" y="1104" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="DeathRecords" color="F4DDBE" x="528" y="1104" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="Disabilities" color="C7F4BE" x="544" y="848" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="Education" color="C7F4BE" x="544" y="640" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="ElderlyHealthConditions" color="BEBEF4" x="256" y="1104" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="ElderlyMembers" color="BEBEF4" x="48" y="1104" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="EmergencyContacts" color="C7F4BE" x="528" y="336" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="Employment" color="C7F4BE" x="752" y="336" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="FutureAddress" color="C7F4BE" x="976" y="304" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="HealthConditions" color="D1BEF4" x="272" y="848" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="HouseholdMembers" color="C7F4BE" x="752" y="560" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="Households" color="BED3F4" x="1472" y="512" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="Income" color="BED3F4" x="1264" y="800" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="InsurancePolicies" color="BED3F4" x="1232" y="576" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="Interests" color="BED3F4" x="1008" y="1104" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="JoblessAssistance" color="C7F4BE" x="272" y="304" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="JoblessStatus" color="D1BEF4" x="1232" y="64" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="Languages" color="F4DDBE" x="288" y="64" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="MaritalStatus" color="C7F4BE" x="976" y="560" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="OtherDetails" color="BED3F4" x="1264" y="304" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="Relationships" color="C7F4BE" x="976" y="848" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="Vaccinations" color="BEBEF4" x="528" y="48" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="Vehicles" color="BED3F4" x="1472" y="304" />
+	</layout>
+	<layout name="Sample Layout with Tools" id="Layout_11ca" show_column_type="y" show_relation="columns" >
+		<entity schema="ECS_economic_census_management_system.dbo" name="AdditionalIncome" color="BED3F4" x="2304" y="544" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="BankAccounts" color="BED3F4" x="2304" y="832" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="Children" color="BED3F4" x="1696" y="1104" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="ChildrenEducation" color="BED3F4" x="1952" y="1104" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="Citizenship" color="C7F4BE" x="912" y="848" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="Contacts" color="BED3F4" x="2000" y="832" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="DeathCertificate" color="F4DDBE" x="912" y="1104" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="DeathRecords" color="F4DDBE" x="640" y="1104" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="Disabilities" color="C7F4BE" x="640" y="848" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="Education" color="C7F4BE" x="640" y="640" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="ElderlyHealthConditions" color="BEBEF4" x="320" y="1104" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="ElderlyMembers" color="BEBEF4" x="48" y="1104" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="EmergencyContacts" color="C7F4BE" x="640" y="336" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="Employment" color="C7F4BE" x="912" y="336" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="FutureAddress" color="C7F4BE" x="1408" y="560" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="HealthConditions" color="D1BEF4" x="1376" y="1104" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="HouseholdMembers" color="C7F4BE" x="912" y="560" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="Households" color="BED3F4" x="2000" y="544" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="Income" color="BED3F4" x="1744" y="832" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="InsurancePolicies" color="BED3F4" x="1696" y="608" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="Interests" color="BED3F4" x="368" y="864" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="JoblessAssistance" color="C7F4BE" x="320" y="336" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="JoblessStatus" color="D1BEF4" x="1696" y="96" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="Languages" color="F4DDBE" x="368" y="96" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="MaritalStatus" color="C7F4BE" x="1184" y="560" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="OtherDetails" color="BED3F4" x="1744" y="336" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="Relationships" color="C7F4BE" x="1184" y="848" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="Vaccinations" color="BEBEF4" x="640" y="80" />
+		<entity schema="ECS_economic_census_management_system.dbo" name="Vehicles" color="BED3F4" x="2000" y="336" />
+		<callout x="912" y="448" pointer="Round" >
+			<comment><![CDATA[This is a sample layout with tools. 
+For better understanding the schema create multiple layouts with same or different tables. 
+Double-click on any table, column or foreign key to edit.]]></comment>
+		</callout>
+		<group name="HealthConditions" color="F0ECF7" >
+			<entity schema="ECS_economic_census_management_system.dbo" name="HealthConditions" />
+		</group>
+		<group name="Interests" color="ECF0F7" >
+			<entity schema="ECS_economic_census_management_system.dbo" name="Interests" />
+		</group>
+		<group name="JoblessAssistance" color="EEF7EC" >
+			<entity schema="ECS_economic_census_management_system.dbo" name="JoblessAssistance" />
+		</group>
+		<group name="Languages" color="F7F2EC" >
+			<entity schema="ECS_economic_census_management_system.dbo" name="Languages" />
+		</group>
+		<group name="Vaccinations" color="ECECF7" >
+			<entity schema="ECS_economic_census_management_system.dbo" name="Vaccinations" />
+		</group>
+		<group name="JoblessStatus" color="F0ECF7" >
+			<entity schema="ECS_economic_census_management_system.dbo" name="JoblessStatus" />
+		</group>
+		<group name="Children" color="ECF0F7" >
+			<entity schema="ECS_economic_census_management_system.dbo" name="Children" />
+			<entity schema="ECS_economic_census_management_system.dbo" name="ChildrenEducation" />
+		</group>
+		<group name="DeathRecords" color="F7F2EC" >
+			<entity schema="ECS_economic_census_management_system.dbo" name="DeathRecords" />
+			<entity schema="ECS_economic_census_management_system.dbo" name="DeathCertificate" />
+		</group>
+		<group name="ElderlyMembers" color="ECECF7" >
+			<entity schema="ECS_economic_census_management_system.dbo" name="ElderlyMembers" />
+			<entity schema="ECS_economic_census_management_system.dbo" name="ElderlyHealthConditions" />
+		</group>
+		<group name="Households" color="ECF0F7" >
+			<entity schema="ECS_economic_census_management_system.dbo" name="Households" />
+			<entity schema="ECS_economic_census_management_system.dbo" name="AdditionalIncome" />
+			<entity schema="ECS_economic_census_management_system.dbo" name="BankAccounts" />
+			<entity schema="ECS_economic_census_management_system.dbo" name="Contacts" />
+			<entity schema="ECS_economic_census_management_system.dbo" name="Income" />
+			<entity schema="ECS_economic_census_management_system.dbo" name="InsurancePolicies" />
+			<entity schema="ECS_economic_census_management_system.dbo" name="OtherDetails" />
+			<entity schema="ECS_economic_census_management_system.dbo" name="Vehicles" />
+		</group>
+		<group name="HouseholdMembers" color="EEF7EC" >
+			<entity schema="ECS_economic_census_management_system.dbo" name="HouseholdMembers" />
+			<entity schema="ECS_economic_census_management_system.dbo" name="MaritalStatus" />
+			<entity schema="ECS_economic_census_management_system.dbo" name="Relationships" />
+			<entity schema="ECS_economic_census_management_system.dbo" name="Citizenship" />
+			<entity schema="ECS_economic_census_management_system.dbo" name="Disabilities" />
+			<entity schema="ECS_economic_census_management_system.dbo" name="Education" />
+			<entity schema="ECS_economic_census_management_system.dbo" name="EmergencyContacts" />
+			<entity schema="ECS_economic_census_management_system.dbo" name="Employment" />
+			<entity schema="ECS_economic_census_management_system.dbo" name="FutureAddress" />
+		</group>
+		<script name="Sample SQL Editor" id="Editor_16d0" language="SQL" >
+			<string><![CDATA[SELECT MemberID, HouseholdID, MemberName, Gender, DateOfBirth, Nationality, Occupation, NIC, JoblessStatus
+FROM
+	dbo.HouseholdMembers s;]]></string>
+		</script>
+		<browser id="Browse_1a22" name="Sample Relational Data Browse" confirm_updates="y" >
+			<browse_table schema="ECS_economic_census_management_system.dbo" entity="HouseholdMembers" x="20" y="20" width="400" height="300" >
+				<browse_table schema="ECS_economic_census_management_system.dbo" entity="Children" fk="FK__Children__Member__1920BF5C" x="440" y="20" width="500" height="350" >
+					<browse_table schema="ECS_economic_census_management_system.dbo" entity="ChildrenEducation" fk="FK__ChildrenE__Child__5629CD9C" x="960" y="20" width="500" height="350" />
+				</browse_table>
+			</browse_table>
+		</browser>
+		<query id="Query_964" name="Sample Query Builder" >
+			<query_table schema="ECS_economic_census_management_system.dbo" name="HouseholdMembers" alias="h" x="48" y="48" >
+				<column name="MemberID" />
+				<column name="HouseholdID" />
+				<column name="MemberName" />
+				<column name="Gender" />
+				<column name="DateOfBirth" />
+				<column name="Nationality" />
+				<column name="Occupation" />
+				<column name="NIC" />
+				<column name="JoblessStatus" />
+				<query_table schema="ECS_economic_census_management_system.dbo" name="Children" alias="c" x="256" y="48" fk="FK__Children__Member__1920BF5C" type="Inner Join" >
+					<column name="ChildID" />
+					<column name="MemberID" />
+					<column name="ChildName" />
+					<column name="DateOfBirth" />
+					<query_table schema="ECS_economic_census_management_system.dbo" name="ChildrenEducation" alias="c1" x="432" y="48" fk="FK__ChildrenE__Child__5629CD9C" type="Inner Join" >
+						<column name="ChildEducationID" />
+						<column name="ChildID" />
+						<column name="SchoolName" />
+						<column name="GradeLevel" />
+					</query_table>
+				</query_table>
+			</query_table>
+		</query>
+	</layout>
+</project>
